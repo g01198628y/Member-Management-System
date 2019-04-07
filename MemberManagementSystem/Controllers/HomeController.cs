@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MemberManagementSystem.Models;
 
 namespace MemberManagementSystem.Controllers
 {
@@ -10,7 +11,9 @@ namespace MemberManagementSystem.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            NorthwindEntities db = new NorthwindEntities();
+            var employeeList = db.Employees.OrderBy(x => x.EmployeeID).ToList();
+            return View(employeeList);
         }
 
         public ActionResult About()
