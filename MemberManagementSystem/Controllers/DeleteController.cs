@@ -7,26 +7,11 @@ using MemberManagementSystem.Models;
 
 namespace MemberManagementSystem.Controllers
 {
-    public class HomeController : Controller
+    public class DeleteController : Controller
     {
         private readonly NorthwindEntities _db = new NorthwindEntities();
 
-        public ActionResult Index()
-        {
-            var employeeList = _db.Employees.OrderBy(x => x.EmployeeID).ToList();
-            return View(employeeList);
-        }
-
-        public ActionResult About()
-        {
-            return View();
-        }
-
-        public ActionResult Create()
-        {
-            return View();
-        }
-
+        // GET: Delete
         public ActionResult Delete(int id)
         {
             var deleteEmployee = _db.Employees.FirstOrDefault(x => x.EmployeeID == id);
@@ -37,7 +22,7 @@ namespace MemberManagementSystem.Controllers
                 _db.SaveChanges();
             }
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "List");
         }
     }
 }

@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<MemberManagementSystem.Models.Employees>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Member List";
 }
 
-<h2>Index</h2>
+<h2>Member List</h2>
 
 <p>
-    @Html.ActionLink("Create New Employee", "Create")
+    @Html.ActionLink("Create New Employee", "Index", "Create")
 </p>
 <table class="table">
     <tr>
