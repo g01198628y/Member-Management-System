@@ -9,10 +9,11 @@ namespace MemberManagementSystem.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly NorthwindEntities _db = new NorthwindEntities();
+
         public ActionResult Index()
         {
-            NorthwindEntities db = new NorthwindEntities();
-            var employeeList = db.Employees.OrderBy(x => x.EmployeeID).ToList();
+            var employeeList = _db.Employees.OrderBy(x => x.EmployeeID).ToList();
             return View(employeeList);
         }
 
@@ -24,6 +25,19 @@ namespace MemberManagementSystem.Controllers
         public ActionResult Create()
         {
             return View();
+        }
+
+        public ActionResult Delete(int id)
+        {
+            var deleteEmployee = _db.Employees.FirstOrDefault(x => x.EmployeeID == id);
+
+            if (deleteEmployee != null)
+            {
+                _db.Employees.Remove(deleteEmployee);
+                _db.SaveChanges();
+            }
+
+            return RedirectToAction("Index");
         }
     }
 }
