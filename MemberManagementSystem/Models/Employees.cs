@@ -29,7 +29,7 @@ namespace MemberManagementSystem.Models
         public string LastName { get; set; }
         public string FirstName { get; set; }
         [Required]
-        [StringLength(15, MinimumLength = 3, ErrorMessage = "This Field Can Only Enter Word Between 3 and 15.")]
+        [StringLength(15, MinimumLength = 3, ErrorMessage = "This Field's Word Number Should Between 3 and 15.")]
         public string Name { get; set; }
         public string Title { get; set; }
         public string TitleOfCourtesy { get; set; }
@@ -45,7 +45,7 @@ namespace MemberManagementSystem.Models
         public string PostalCode { get; set; }
         public string Country { get; set; }
         [Required]
-        [RegularExpression(@"\d{3}-\d{6}", ErrorMessage = "Please Enter The Correct Format : XXXX-XXXXXX .")]
+        [RegularExpression(@"\d{4}-\d{6}", ErrorMessage = "Please Enter The Correct Format : XXXX-XXXXXX .")]
         public string Tel { get; set; }
         public string Extension { get; set; }
         public byte[] Photo { get; set; }
