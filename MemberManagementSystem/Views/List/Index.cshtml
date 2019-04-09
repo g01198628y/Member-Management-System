@@ -51,7 +51,7 @@
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", "Delete", new { id = item.EmployeeID }, new { onclick = "return confirm('Are You Sure To Delete Employee " + item.FirstName + item.LastName + " ?');" })
+                @Html.ActionLink("Delete", "Delete", "Delete", new { id = item.EmployeeID }, new { onclick = "return confirm('Are You Sure To Delete Employee " + item.Name + " ?');" })
             </td>
         </tr>
     }
