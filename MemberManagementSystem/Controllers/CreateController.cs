@@ -1,5 +1,7 @@
 ﻿using MemberManagementSystem.Models;
 using System;
+using System.Linq;
+using System.Net;
 using System.Web.Mvc;
 
 namespace MemberManagementSystem.Controllers
@@ -13,13 +15,20 @@ namespace MemberManagementSystem.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(string name, int age, string address, string tel)
+        public ActionResult Create(Employees employees)
         {
-            var db = new NorthwindEntities();
-            var newEmployee = new Employees { Name = name, Age = age, Address = address, Tel = tel };
-            db.Employees.Add(newEmployee);
-            db.SaveChanges();
-            return RedirectToAction("Index", "List");
+            if (ModelState.IsValid)
+            {
+                var db = new NorthwindEntities();
+                var newEmployee = new Employees { Name = employees.Name, Age = employees.Age, Address = employees.Address, Tel = employees.Tel };
+                db.Employees.Add(newEmployee);
+                db.SaveChanges();
+                return RedirectToAction("Index", "List");
+            }
+
+            var validateError = new Employees { createValidateError = ModelState };
+
+            return View("Index", validateError);
         }
     }
 }

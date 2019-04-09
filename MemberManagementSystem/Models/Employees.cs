@@ -7,6 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
+
 namespace MemberManagementSystem.Models
 {
     using System;
@@ -14,6 +17,8 @@ namespace MemberManagementSystem.Models
     
     public partial class Employees
     {
+        public ModelStateDictionary createValidateError;
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Employees()
         {
@@ -23,17 +28,24 @@ namespace MemberManagementSystem.Models
         public int EmployeeID { get; set; }
         public string LastName { get; set; }
         public string FirstName { get; set; }
+        [Required]
+        [StringLength(15, MinimumLength = 3, ErrorMessage = "This Field Can Only Enter Word Between 3 and 15.")]
         public string Name { get; set; }
         public string Title { get; set; }
         public string TitleOfCourtesy { get; set; }
         public Nullable<System.DateTime> BirthDate { get; set; }
-        public Nullable<int> Age { get; set; }
+        [Required]
+        [Range(0, int.MaxValue, ErrorMessage = "Please Enter The Number Higher Than 0.")]
+        public int Age { get; set; }
         public Nullable<System.DateTime> HireDate { get; set; }
+        [Required]
         public string Address { get; set; }
         public string City { get; set; }
         public string Region { get; set; }
         public string PostalCode { get; set; }
         public string Country { get; set; }
+        [Required]
+        [RegularExpression(@"\d{3}-\d{6}", ErrorMessage = "Please Enter The Correct Format : XXXX-XXXXXX .")]
         public string Tel { get; set; }
         public string Extension { get; set; }
         public byte[] Photo { get; set; }
