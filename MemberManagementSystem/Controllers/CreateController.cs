@@ -26,9 +26,7 @@ namespace MemberManagementSystem.Controllers
                 return RedirectToAction("Index", "List");
             }
 
-            var validateError = new Employees { createValidateError = ModelState };
-
-            return View("Index", validateError);
+            return View("Index");
         }
     }
 }

@@ -17,7 +17,6 @@ namespace MemberManagementSystem.Models
     
     public partial class Employees
     {
-        public ModelStateDictionary createValidateError;
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Employees()
@@ -35,7 +34,7 @@ namespace MemberManagementSystem.Models
         public string TitleOfCourtesy { get; set; }
         public Nullable<System.DateTime> BirthDate { get; set; }
         [Required]
-        [Range(0, int.MaxValue, ErrorMessage = "Please Enter The Number Higher Than 0.")]
+        [Range(0, int.MaxValue, ErrorMessage = "Please Enter The Number Greater Than 0.")]
         public int Age { get; set; }
         public Nullable<System.DateTime> HireDate { get; set; }
         [Required]
