@@ -9,13 +9,26 @@ namespace MemberManagementSystem.Controllers
 {
     public class EditController : Controller
     {
-        // GET: Edit
+        private readonly NorthwindEntities _db = new NorthwindEntities();
+
+        //Get
         public PartialViewResult Edit(int id)
         {
-            var _db = new NorthwindEntities();
-            var editEmployee = _db.Employees.FirstOrDefault(x => x.EmployeeID == id);
+            var employeeInfo = _db.Employees.FirstOrDefault(x => x.EmployeeID == id);
 
-            return PartialView("_EditPartial", editEmployee);
+            return PartialView("_EditPartial", employeeInfo);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(int employeeId, Employees employeeNewInfo)
+        {
+            var editEmployee = _db.Employees.FirstOrDefault(x => x.EmployeeID == employeeId);
+            editEmployee.Name = employeeNewInfo.Name;
+            editEmployee.Age = employeeNewInfo.Age;
+            editEmployee.Address = employeeNewInfo.Address;
+            editEmployee.Tel = employeeNewInfo.Tel;
+            _db.SaveChanges();
+            return RedirectToAction("Index", "List");
         }
     }
 }

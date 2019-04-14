@@ -53,17 +53,12 @@
                 @Html.ActionLink("Edit", "Edit", "Edit", new { id = item.EmployeeID }, "") |
 
                 @Ajax.ActionLink("Edit", "Edit", "Edit", new { id = item.EmployeeID },
-                    new AjaxOptions { UpdateTargetId = "Edit", InsertionMode = InsertionMode.Replace, HttpMethod = "POST" }) |
+                    new AjaxOptions { UpdateTargetId = "PartialPageForEdit", InsertionMode = InsertionMode.Replace }) |
                 @Html.ActionLink("Delete", "Delete", "Delete", new { id = item.EmployeeID }, new { onclick = "return confirm('Are You Sure To Delete Employee " + item.Name + " ?');" })
             </td>
         </tr>
     }
 </table>
 
-<div>
-    git reset test1
-</div>
-
-<div>
-    git reset test4
+<div id="PartialPageForEdit">
 </div>
