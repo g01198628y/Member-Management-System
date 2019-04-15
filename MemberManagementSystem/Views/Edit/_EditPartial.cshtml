@@ -1,5 +1,7 @@
 ﻿@model MemberManagementSystem.Models.Employees
 
+@Scripts.Render("~/bundles/bootstrap")
+
 @using (Html.BeginForm("Edit", "Edit", new { employeeId = Model.EmployeeID }, FormMethod.Post))
 {
     @Html.AntiForgeryToken()
