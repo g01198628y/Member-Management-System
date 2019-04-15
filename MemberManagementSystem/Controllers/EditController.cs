@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -20,13 +21,15 @@ namespace MemberManagementSystem.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(int employeeId, Employees employeeNewInfo)
+        public ActionResult Edit(Employees employeeNewInfo)
         {
-            var editEmployee = _db.Employees.FirstOrDefault(x => x.EmployeeID == employeeId);
-            editEmployee.Name = employeeNewInfo.Name;
-            editEmployee.Age = employeeNewInfo.Age;
-            editEmployee.Address = employeeNewInfo.Address;
-            editEmployee.Tel = employeeNewInfo.Tel;
+            _db.Entry(employeeNewInfo).State = EntityState.Modified;
+
+            //var editEmployee = _db.Employees.FirstOrDefault(x => x.EmployeeID == employeeId);
+            //editEmployee.Name = employeeNewInfo.Name;
+            //editEmployee.Age = employeeNewInfo.Age;
+            //editEmployee.Address = employeeNewInfo.Address;
+            //editEmployee.Tel = employeeNewInfo.Tel;
             _db.SaveChanges();
             return RedirectToAction("Index", "List");
         }

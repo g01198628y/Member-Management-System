@@ -2,12 +2,13 @@
 
 @Scripts.Render("~/bundles/bootstrap")
 
+<h2>Edit Employee</h2>
+
 @using (Html.BeginForm("Edit", "Edit", new { employeeId = Model.EmployeeID }, FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Employees</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
@@ -46,8 +47,11 @@
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Save" class="btn btn-success" />
-                <input type="button" value="Cancel" class="btn btn-danger" />
+                <input type="button" id="cancel" value="Cancel" class="btn btn-danger" />
             </div>
         </div>
     </div>
 }
+<script>
+    $.validator.unobtrusive.parse("#PartialPageForEdit");
+</script>
