@@ -53,7 +53,7 @@
                 <td>
 
                     @Ajax.ActionLink("Edit", "Edit", "Edit", new { id = item.EmployeeID },
-                        new AjaxOptions { UpdateTargetId = "PartialPageForEdit", InsertionMode = InsertionMode.Replace }) |
+                        new AjaxOptions { UpdateTargetId = "PartialPageForEdit", InsertionMode = InsertionMode.Replace },new {onclick = "editOnClick()"}) |
                     @Html.ActionLink("Delete", "Delete", "Delete", new { id = item.EmployeeID }, new { onclick = "return confirm('Are You Sure To Delete Employee " + item.Name + " ?');" })
                 </td>
             </tr>
@@ -64,4 +64,8 @@
 </div>
 <div id="PartialPageForEdit" style="display: inline-block">
 </div>
-
+<script>
+    function EditOnClick() {
+        $('#PartialPageForEdit').show();
+    }
+</script>

@@ -16,7 +16,6 @@ namespace MemberManagementSystem.Controllers
         public PartialViewResult Edit(int id)
         {
             var employeeInfo = _db.Employees.FirstOrDefault(x => x.EmployeeID == id);
-
             return PartialView("_EditPartial", employeeInfo);
         }
 
@@ -24,12 +23,6 @@ namespace MemberManagementSystem.Controllers
         public ActionResult Edit(Employees employeeNewInfo)
         {
             _db.Entry(employeeNewInfo).State = EntityState.Modified;
-
-            //var editEmployee = _db.Employees.FirstOrDefault(x => x.EmployeeID == employeeId);
-            //editEmployee.Name = employeeNewInfo.Name;
-            //editEmployee.Age = employeeNewInfo.Age;
-            //editEmployee.Address = employeeNewInfo.Address;
-            //editEmployee.Tel = employeeNewInfo.Tel;
             _db.SaveChanges();
             return RedirectToAction("Index", "List");
         }
